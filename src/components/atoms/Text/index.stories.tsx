@@ -1,5 +1,5 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react'
-import {Text} from './index'
+import { ComponentStory } from '@storybook/react'
+import Typography from '@mui/material/Typography';
 
 export default {
   title: 'Atoms/Text',
@@ -23,7 +23,7 @@ export default {
       ],
       control: { type: 'select' },
       defaultValue: 'body1',
-      description: 'テキストバリアント',
+      description: 'バリアント',
       table: {
         type: {
           summary: 'body1, body2, button, caption, h1, h2, h3, h4, h5, h6, inherit, overline, subtitle1,subtitle2'
@@ -31,26 +31,12 @@ export default {
         defaultValue: { summary: 'body1' },
       },
     },
-    color: {
-      options: [
-				'primary.main',
-				'secondary.main',
-				'error.main',
-				'warning.main',
-				'info.main',
-				'success.main',
-				'text.primary',
-				'text.secondary',
-				'text.disabled',
-      ],
-      control: { type: 'select' },
-      defaultValue: 'text.primary',
-      description: 'カラー',
-      table: {
-        type: {
-          summary: 'primary.main,	secondary.main,	error.main,	warning.main,	info.main, success.main, text.primary, text.secondary, text.disabled'
-        },
-        defaultValue: { summary: 'text.primary' },
+    sx: {
+      control: {type: 'object'},
+      default: {},
+      description: 'その他の設定',
+      type: {
+        summary: '{"color": "text.primary"}'
       },
     },
 		children: {
@@ -61,9 +47,11 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Text>
+}
 
-const Template: ComponentStory<typeof Text> = (args) => <Text {...args} />
-
+const Template: ComponentStory<typeof Typography> = (args) => <Typography {...args} />
 export const Default = Template.bind({})
-Default.args = { children: 'テストテキスト' }
+Default.args = { 
+  children: 'テストテキスト',
+  sx: {color: 'text.primary'}, 
+}

@@ -15,6 +15,7 @@ import {
 } from '@mui/material';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { SeverityPill } from '../../atoms/StatusIcon';
+import { Todo } from '../../../types/data';
 
 const orders = [
   {
@@ -79,7 +80,12 @@ const orders = [
   }
 ];
 
-export const LatestOrders = () => {
+type LatestOrdersProps = {
+  todos: Todo[] 
+}
+
+export const LatestOrders = ({todos}: LatestOrdersProps) => {
+  console.log(todos)
 
   const onClickRow = (e: any) => {
     console.log(`########${e}`)

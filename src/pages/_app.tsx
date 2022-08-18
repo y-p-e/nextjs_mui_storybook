@@ -2,6 +2,8 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import { SWRConfig } from 'swr'
+import { fetcher } from '../utils';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const theme = createTheme({
@@ -14,7 +16,14 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Component {...pageProps} />
+      <SWRConfig
+          value={{
+            shouldRetryOnError: false,
+            fetcher,
+          }}
+        >
+        <Component {...pageProps} />
+      </SWRConfig>
     </ThemeProvider>
   )
 }

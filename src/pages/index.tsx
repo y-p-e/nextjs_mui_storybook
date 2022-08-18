@@ -1,9 +1,14 @@
 import type { NextPage } from 'next'
 
-import Dashboard from '../components/template/dashboard-layout'
+import { Layout } from '../components/template/Layout'
+import { LatestOrders } from '../components/organisms/DashBoardList'
 
 const Home: NextPage = () => {
-  return Dashboard()
+  return (
+    <Layout pageTitle='ダッシュボード'>
+      <LatestOrders />
+    </Layout>
+  )
 }
 
 export default Home

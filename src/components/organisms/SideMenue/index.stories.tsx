@@ -1,8 +1,9 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import {Header} from './index'
+import {SideMenue} from './index'
+
 
 export default {
-  title: 'Organisms/Header',
+  title: 'Organisms/SideMenue',
   argTypes: {
     open: {
       control: { type: 'boolean' },
@@ -13,7 +14,7 @@ export default {
         },
       },
     },
-		handleDrawerOpen: {
+		handleDrawerClose: {
       control: { type: 'function' },
       description: 'バーガーメニューを押した時のイベントハンドラ',
       table: {
@@ -21,11 +22,11 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Header>
+} as ComponentMeta<typeof SideMenue>
 
-const Template: ComponentStory<typeof Header> = (args) => <Header {...args} />
+const Template: ComponentStory<typeof SideMenue> = (args) => <SideMenue {...args} />
 
 export const Default = Template.bind({})
 Default.args = { 
-  open: false,
+  open: true,
 }

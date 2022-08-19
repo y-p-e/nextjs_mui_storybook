@@ -13,19 +13,20 @@ import {
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { SeverityPill } from '../../atoms/StatusIcon';
 import { Todo } from '../../../types/data';
-import Link from 'next/link'
 
-type LatestOrdersProps = {
+
+type TodoListProps = {
   todos: Todo[] 
 }
 
-export const LatestOrders = ({todos}: LatestOrdersProps) => {
-  const displayTodos = todos.slice(0, 4)
+export const TodoList = ({todos}: TodoListProps) => {
+  const displayTodos = todos
+
   const onClickRow = (userId: number) => {console.log(userId)}
 
   return (
     <Card>
-      <CardHeader title="Todoリスト" />
+      <CardHeader title="タスク一覧画面" />
 			<Divider />
 			<Box>
 				<Table>
@@ -77,16 +78,14 @@ export const LatestOrders = ({todos}: LatestOrdersProps) => {
           p: 2
         }}
       >
-				<Link href="/todos/1" passHref>
-					<Button
-						color="primary"
-						endIcon={<ArrowRightIcon fontSize="small" />}
-						size="small"
-						variant="text"
-						>
-						全て表示
-					</Button>
-				</Link>
+        <Button
+          color="primary"
+          endIcon={<ArrowRightIcon fontSize="small" />}
+          size="small"
+          variant="text"
+        >
+          全て表示
+        </Button>
       </Box>
     </Card>
   )

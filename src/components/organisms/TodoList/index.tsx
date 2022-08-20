@@ -13,13 +13,15 @@ import {
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { SeverityPill } from '../../atoms/StatusIcon';
 import { Todo } from '../../../types/data';
-
+import { Pagination } from '../../organisms/Pagination'
 
 type TodoListProps = {
   todos: Todo[] 
+	pages: number[]
+  current_page: number
 }
 
-export const TodoList = ({todos}: TodoListProps) => {
+export const TodoList = ({todos, pages, current_page}: TodoListProps) => {
   const displayTodos = todos
 
   const onClickRow = (userId: number) => {console.log(userId)}
@@ -78,14 +80,7 @@ export const TodoList = ({todos}: TodoListProps) => {
           p: 2
         }}
       >
-        <Button
-          color="primary"
-          endIcon={<ArrowRightIcon fontSize="small" />}
-          size="small"
-          variant="text"
-        >
-          全て表示
-        </Button>
+				<Pagination pages={pages} current_page={current_page}/>
       </Box>
     </Card>
   )

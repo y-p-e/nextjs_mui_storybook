@@ -10,10 +10,11 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
-import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { SeverityPill } from '../../atoms/StatusIcon';
 import { Todo } from '../../../types/data';
 import { Pagination } from '../../organisms/Pagination'
+import { TodoModal } from '../../organisms/TodoModal'
+import {useState, useCallback} from 'react';
 
 type TodoListProps = {
   todos: Todo[] 
@@ -24,7 +25,12 @@ type TodoListProps = {
 export const TodoList = ({todos, pages, current_page}: TodoListProps) => {
   const displayTodos = todos
 
-  const onClickRow = (userId: number) => {console.log(userId)}
+  const [open, setOpen] = useState(false);
+  const [todo, setTodo] = useState<Todo>();
+  const onClickRow = useCallback((todo: Todo) => {
+		setTodo(todo)
+		setOpen(true)
+	}, [todo])
 
   return (
     <Card>
@@ -50,7 +56,7 @@ export const TodoList = ({todos, pages, current_page}: TodoListProps) => {
 							<TableRow
 								hover
 								key={todo.id}
-								onClick={() => onClickRow(todo.id)}
+								onClick={() => onClickRow(todo)}
 							>
 								<TableCell>
 									{todo.userId}
@@ -82,6 +88,7 @@ export const TodoList = ({todos, pages, current_page}: TodoListProps) => {
       >
 				<Pagination pages={pages} current_page={current_page}/>
       </Box>
+			<TodoModal open={open} setOpen={setOpen} todo={todo}/>
     </Card>
   )
 }
